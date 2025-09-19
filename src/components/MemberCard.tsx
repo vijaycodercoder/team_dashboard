@@ -13,10 +13,11 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-const MemberCard = () => {
+import type { Member } from '@/data/members';
+const MemberCard = ({member, onClick}:{  member: Member , onClick?: () => void}) => {
   return (
 <>
-    <div className="w-full">
+    <div className="w-full " onClick={onClick}>
       {/* Desktop View  */}
       <Card className="hidden md:block hover:shadow-lg hover:shadow-gray-900/10 transition-all duration-300 hover:-translate-y-1 max-w-sm group cursor-pointer border-gray-200/80 bg-gradient-to-b from-white to-gray-50/30">
         <CardHeader className="text-center space-y-4">
@@ -27,23 +28,23 @@ const MemberCard = () => {
                 alt="Alice Johnson"
                 className="group-hover:scale-105 transition-transform duration-300"
               />
-              <AvatarFallback className="text-lg">AJ</AvatarFallback>
+              <AvatarFallback className="text-lg font-bold uppercase"> {member.name.split(" ").map(n => n[0]).slice(0, 2).join("")}</AvatarFallback>
             </Avatar>
           </div>
           
           <div className="space-y-2">
             <CardTitle className="text-xl group-hover:text-blue-600 transition-colors duration-200">
-              Alice Johnson
+           {member.name}
             </CardTitle>
             <CardDescription className="text-sm font-medium text-gray-500">
-              Senior Frontend Developer
+                    {member.role}
             </CardDescription>
           </div>
         </CardHeader>
         
         <CardContent className="text-center pb-4">
-          <Badge className="shadow-sm">
-            Active
+          <Badge variant={member.status == "Active" ?"default" :"destructive"} className="shadow-sm">
+             {member.status}
           </Badge>
         </CardContent>
         
@@ -70,23 +71,23 @@ const MemberCard = () => {
                 src="https://github.com/shadcn.png" 
                 alt="Alice Johnson"
               />
-              <AvatarFallback className="text-base font-semibold">AJ</AvatarFallback>
-            </Avatar>
+ <AvatarFallback className="text-lg font-bold uppercase"> {member.name.split(" ").map(n => n[0]).slice(0, 2).join("")}</AvatarFallback>
+ </Avatar>
             
             {/* Content */}
             <div className="flex-1 min-w-0 space-y-1">
               <div className="flex items-center justify-between gap-3">
                 <div className="min-w-0 flex-1 ">
                   <CardTitle className="text-lg leading-tight truncate">
-                    Alice Johnson
+                  {member.name}
                   </CardTitle>
                   <CardDescription className="text-sm font-medium text-gray-500 mt-0.5">
-                    Senior Frontend Developer
+                    {member.role}
                   </CardDescription>
                 </div>
                 
-                <Badge className="shrink-0 shadow-sm">
-                  Active
+                 <Badge variant={member.status == "Active" ?"default" :"destructive"} >
+                    {member.status}
                 </Badge>
               </div>
             </div>

@@ -1,4 +1,3 @@
-
 import {
   Dialog,
   DialogContent,
@@ -7,6 +6,7 @@ import {
   DialogTitle,
 
 } from "@/components/ui/dialog"
+import { DialogClose } from "@/components/ui/dialog"
 
 import {
   Avatar,
@@ -14,32 +14,43 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-
-import { AppWindowIcon, CodeIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { useEffect, useState } from "react"
+import type { Member } from '@/data/members';
 
 
-const MemberModal = () => {
+const MemberModal = ({modelData }:{  modelData: Member } ) => {
+
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [modelData])
   return (
-   <Dialog open={true}>
-  <DialogContent>
+   <Dialog open={open} onOpenChange={() => {}}>
+  <DialogContent >
+      <DialogClose asChild>
+      <button
+        onClick={() => setOpen(false)}
+        className="absolute top-4 right-4 rounded-md p-1 text-muted-foreground font-bold hover:text-foreground transition"
+        aria-label="Close"
+      >
+    X
+      </button>
+    </DialogClose>
     <DialogHeader>
+      
       <DialogTitle className="flex space-x-4">
            <Avatar className="w-20 h-20 ring-4 ring-gray-100 group-hover:ring-blue-100 transition-all duration-300">
               <AvatarImage 
@@ -52,13 +63,13 @@ const MemberModal = () => {
 
              <div className="space-y-1">
             <CardTitle className="text-xl group-hover:text-blue-600 transition-colors duration-200">
-              Alice Johnson
+             {modelData.name}
             </CardTitle>
             <CardDescription className="text-sm font-medium text-gray-500">
-              Senior Frontend Developer
+       {modelData.role}
             </CardDescription>
              <Badge className="shadow-sm">
-            Active
+       {modelData.status}
           </Badge>
           </div>
       </DialogTitle>
@@ -85,15 +96,15 @@ const MemberModal = () => {
         <TabsContent value="profile" >
           <Card >
             <CardHeader>
-              <CardTitle></CardTitle>
+        
               <CardDescription>
            <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">About</label>
+                <label className="text-sm font-semibold text-gray-700">Bio</label>
                 <p className="text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-lg border">
-                 Passionate frontend developer with 5+ years of experience building modern web applications. Specialized in React, TypeScript, and creating beautiful user interfaces that provide exceptional user experiences.
+               {modelData.bio}
                 </p>
               </div>
-<div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +113,7 @@ const MemberModal = () => {
                     Email Address
                   </label>
                   <p className="text-gray-900 bg-white p-3 rounded-lg border font-mono text-sm">
-                   alice@example.com
+                   {modelData.email}
                   </p>
                 </div>
 
@@ -114,14 +125,14 @@ const MemberModal = () => {
                     Phone
                   </label>
                   <p className="text-gray-900 bg-white p-3 rounded-lg border font-mono text-sm">
-               +91 85146 24866
+             {modelData.mobile  }
                   </p>
                 </div>
           
 
                <div className="">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200">
-                  <div className="text-2xl font-bold text-blue-700">10</div>
+                  <div className="text-2xl font-bold text-blue-700">{modelData.projects.length}</div>
                   <div className="text-sm text-blue-600 font-medium">Total Projects</div>
                 </div>
                 
@@ -136,17 +147,18 @@ const MemberModal = () => {
         <TabsContent value="projects">
           <Card>
             <CardHeader>
-              <CardTitle></CardTitle>
+           
               <CardDescription>
-               
+                <label className="text-sm font-semibold text-gray-700">Projects</label>
+              <ul className="list-disc pl-5 space-y-1 text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-lg border ">
+  {modelData.projects.map((project, i) => (
+    <li className="mx-3" key={i}>{project}</li>
+  ))}
+</ul>
+
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
             
-            </CardContent>
-            <CardFooter>
-          
-            </CardFooter>
           </Card>
         </TabsContent>
       </Tabs>

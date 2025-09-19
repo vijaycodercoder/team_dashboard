@@ -6,6 +6,7 @@ export type Member = {
   email: string
   bio: string
   projects: string[]
+  mobile: number
 }
 
 export const members: Member[] = [
@@ -17,6 +18,7 @@ export const members: Member[] = [
     email: "alice@example.com",
     bio: "Frontend developer with 5 years of experience.",
     projects: ["Project Alpha", "Project Beta"],
+    mobile:5815548252
   },
   {
     id: 2,
@@ -26,6 +28,8 @@ export const members: Member[] = [
     email: "bob@example.com",
     bio: "UX/UI designer passionate about clean design.",
     projects: ["Project Gamma"],
+        mobile:5815548252
+
   },
   {
     id: 3,
@@ -35,5 +39,7 @@ export const members: Member[] = [
     email: "charlie@example.com",
     bio: "Project manager ensuring smooth delivery.",
     projects: ["Project Delta", "Project Epsilon"],
+        mobile:5815548252
+
   },
 ]
