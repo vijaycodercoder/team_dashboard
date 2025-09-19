@@ -118,36 +118,3 @@ export default MemberCard
 
 
 
-
-
-
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-// import { Badge } from "@/components/ui/badge"
-// import type  { Member } from "@/data/members"
-
-// type Props = {
-//   member: Member
-//   onClick: () => void
-// }
-
-// export function MemberCard({ member, onClick }: Props) {
-//   return (
-//     <Card onClick={onClick} className="cursor-pointer hover:shadow-md transition">
-//       <CardHeader className="flex items-center gap-3">
-//         <div className="h-10 w-10 rounded-full bg-muted grid place-items-center font-bold uppercase">
-//           {member.name.split(" ").map(n => n[0]).slice(0, 2).join("")}
-//         </div>
-//         <div className="flex-1">
-//           <CardTitle className="text-base">{member.name}</CardTitle>
-//           <p className="text-xs text-muted-foreground">{member.role}</p>
-//         </div>
-//         <Badge variant={member.status === "Active" ? "default" : "secondary"}>
-//           {member.status}
-//         </Badge>
-//       </CardHeader>
-//       <CardContent>
-//         <p className="text-sm text-muted-foreground line-clamp-2">{member.bio}</p>
-//       </CardContent>
-//     </Card>
-//   )
-// }
