@@ -1,111 +1,89 @@
-# 👥 Team Dashboard – Frontend Assessment (Sep 2025)
+# Team Dashboard – Frontend Assessment
 
-A responsive React + TypeScript dashboard built using **Shadcn/UI**, **Tailwind CSS**, and **Redux Toolkit** to showcase team member cards, search/filter functionality, and modal detail views.
+A responsive and theme-aware **Team Dashboard** built with **React**, **TypeScript**, **Redux Toolkit**, **TailwindCSS**, and **ShadCN UI components**.
 
----
+## 🚀 Features
 
-## 🚀 Tech Stack
+- Search and filter team members by name and role
+- Responsive layout (mobile + desktop cards)
+- Modal view with tabbed interface (Profile & Projects)
+- Dark mode support (auto-detect + toggle)
+- Clean, modular folder structure
+- Redux Toolkit store for member state
 
-- ⚛️ React + Vite (TypeScript)
-- 🎨 Tailwind CSS + Shadcn/UI (Radix-based UI)
-- 🧠 Redux Toolkit (for state management)
-- 📦 Modular folder structure
-- 💡 Fully responsive layout
+## 📂 Folder Structure (Simplified)
 
----
-
-## 🎯 Features
-
-- ✅ Responsive card-based layout for team members
-- 🔍 Live search by member name (min. 2 characters)
-- 🎯 Role-based filter dropdown (Designer, Developer, Manager)
-- 📄 Modal with tabs:
-  - **Profile** (bio, email, phone, total projects)
-  - **Projects** (list of assigned projects)
-- ⚡ Smooth modal animations and transitions
-- 📱 Mobile-first, works well across screen sizes
-
----
-
-## 📂 Folder Structure
-
-\`\`\`
+```
 src/
-├── assets/              # Images
-├── components/
-│   ├── MemberCard.tsx
-│   ├── MemberModal.tsx
-│   └── SearchFilter.tsx
-├── components/ui/       # Shadcn/UI overrides
-├── data/
-│   └── members.ts       # Static team data
-├── features/
-│   └── BasicSlice.ts    # Redux slice
-├── Pages/
-│   └── Dashboard.tsx
-├── App.tsx
-└── main.tsx
-\`\`\`
+├── components/         # Reusable UI components (Navbar, MemberCard, etc.)
+├── Pages/              # Main page views (Dashboard)
+├── data/               # Mock data (members.ts)
+├── features/           # Redux slices (basicSlice.ts)
+├── App.tsx             # App entry point
+└── main.tsx            # ReactDOM bootstrap
+```
 
----
+## 🌙 Dark Mode Support
 
-## 🛠️ Installation & Usage
+- Automatically applies dark theme based on system/browser settings.
+- Users can toggle between **Light** and **Dark** mode via the toggle button in the navbar.
+- Preference is saved in `localStorage`.
 
-\`\`\`bash
-# 1. Clone the repository
-git clone https://git@github.com:vijaycodercoder/team_dashboard.git
+## 📦 Installation
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/yourusername/team-dashboard.git
 cd team-dashboard
+```
 
-# 2. Install dependencies
+2. Install dependencies:
+
+```bash
 npm install
+```
 
-# 3. Start development server
+3. Start the dev server:
+
+```bash
 npm run dev
-\`\`\`
+```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+## 🧠 Approach & Architecture
 
----
+- **Atomic design** principles followed for components.
+- State management using **Redux Toolkit** for clear separation.
+- Data stored in Redux store and filtered in-memory based on user input.
+- Reusable components styled with TailwindCSS + ShadCN patterns.
+- Mobile-first responsive cards and modal structure.
+- Tabs allow clean separation of member profile and projects.
 
-## ✅ Assessment Criteria Met
+## ✅ Evaluation Checklist
 
-| Requirement                         | Status  |
-|-------------------------------------|---------|
-| Member cards with avatar, role      | ✅       |
-| Modal on card click                 | ✅       |
-| Profile + Projects tabs             | ✅       |
-| Search by name (min 2 chars)        | ✅       |
-| Filter by role dropdown             | ✅       |
-| Simultaneous filter + search        | ✅       |
-| Modal opens even on same member     | ✅       |
-| Responsive layout (mobile/desktop)  | ✅       |
-| Shadcn/UI + Tailwind used           | ✅       |
-| Code well-organized & modular       | ✅       |
+### Core Requirements
+- ✅ Functional dashboard UI with search and filters
+- ✅ Modal with detailed view per member
+- ✅ Role-based filtering using dropdown
+- ✅ Redux setup with original + filtered member state
 
----
+### UI/UX & Styling
+- ✅ Responsive cards and modal layout
+- ✅ Smooth animations and transitions
+- ✅ TailwindCSS + ShadCN styling system
 
-## 📌 Approach
+### Error Handling & Accessibility
+- ✅ Clean fallback UI when no data is found
+- ✅ Dark mode toggle with aria-labels
+- ✅ Keyboard-accessible modal and buttons
 
-- Used **Redux Toolkit** to manage both original and filtered member data.
-- Search input and role dropdown update Redux state in sync.
-- Modal opens on card click with correct data and tabs.
-- Reused `MemberCard` and `MemberModal` for maintainability.
-- `Dialog`, `Tabs`, `Avatar`, `Badge`, etc., all sourced from **Shadcn/UI**.
-- UI is responsive, lightweight, and visually consistent.
+### Code Quality
+- ✅ Modular component structure
+- ✅ Memoized components where needed
+- ✅ Clear function names and reusable logic
 
----
+--
 
-## 👨‍💻 Author
+📬 For any questions, feel free to reach out.
 
-**Your Name**  
-Frontend Developer  
-GitHub: [@vijaycodercoder](https://github.com/vijaycodercoder)
-
----
-
-## 📬 Submission
-
-✅ All requested features are implemented.  
-📁 Ready for GitHub push & submission.
-
----
+Happy Reviewing! 🚀
