@@ -52,14 +52,14 @@ const SearchFilter = () => {
   }
 
   return (
-    <div className="flex space-x-3 py-3 px-3 rounded-md border-1 bg-gray-100">
+    <div className="flex space-x-3 py-3 px-3 rounded-md border-1 bg-gray-100 ">
       <Input
-        className="bg-white"
+        className="bg-white text-gray-900"
         placeholder="Search by name..."
         onChange={handleSearch}
       />
       <Select onValueChange={handleRoleFilter} defaultValue="all">
-        <SelectTrigger className="w-[180px] bg-white">
+        <SelectTrigger className="w-[180px] bg-white text-gray-900">
           <SelectValue placeholder="Filter by Role" />
         </SelectTrigger>
         <SelectContent>
