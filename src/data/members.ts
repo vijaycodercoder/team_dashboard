@@ -1,3 +1,6 @@
+import Avatar  from "../assets/Avatar.png"
+import Avatar2  from "../assets/Avatar-2.png"
+
 export type Member = {
   id: number
   name: string
@@ -6,7 +9,8 @@ export type Member = {
   email: string
   bio: string
   projects: string[]
-  mobile: number
+  mobile: number,
+  image:string
 }
 
 export const members: Member[] = [
@@ -18,7 +22,8 @@ export const members: Member[] = [
     email: "alice@example.com",
     bio: "Frontend developer with 5 years of experience.",
     projects: ["Project Alpha", "Project Beta"],
-    mobile:5815548252
+    mobile:5815548252,
+    image:Avatar
   },
   {
     id: 2,
@@ -28,7 +33,8 @@ export const members: Member[] = [
     email: "bob@example.com",
     bio: "UX/UI designer passionate about clean design.",
     projects: ["Project Gamma"],
-        mobile:5815548252
+    mobile:5815548252,
+    image:""
 
   },
   {
@@ -39,7 +45,8 @@ export const members: Member[] = [
     email: "charlie@example.com",
     bio: "Project manager ensuring smooth delivery.",
     projects: ["Project Delta", "Project Epsilon"],
-        mobile:5815548252
+    mobile:5815548252,
+    image:Avatar2
 
   },
 ]

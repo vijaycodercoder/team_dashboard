@@ -11,33 +11,33 @@ import { setBasicData } from "@/features/BasicSlice"
 import { useMemo, useState } from "react"
 
 const SearchFilter = () => {
-  const { originalData } = useSelector((state) => state.basic)
+  const { originalData } = useSelector((state:any) => state.basic)
   const dispatch = useDispatch()
 
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedRole, setSelectedRole] = useState("all")
 
   const roles = useMemo(() => {
-    return Array.from(new Set(originalData.map((m) => m.role)))
+    return Array.from(new Set(originalData.map((m: { role: any }) => m.role)))
   }, [originalData])
 
   const applyFilters = (name = searchQuery, role = selectedRole) => {
     let filtered = originalData
 
     if (name.length >= 2) {
-      filtered = filtered.filter((member) =>
+      filtered = filtered.filter((member: { name: string }) =>
         member.name.toLowerCase().includes(name.toLowerCase())
       )
     }
 
     if (role !== "all") {
-      filtered = filtered.filter((member) => member.role === role)
+      filtered = filtered.filter((member: { role: string }) => member.role === role)
     }
 
     dispatch(setBasicData(filtered))
   }
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: { target: { value: any } }) => {
     const name = e.target.value
     setSearchQuery(name)
 

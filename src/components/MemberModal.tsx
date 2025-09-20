@@ -26,23 +26,23 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { useEffect, useState } from "react"
+
 import type { Member } from '@/data/members';
+import { useMemo } from "react"
 
 
-const MemberModal = ({modelData }:{  modelData: Member } ) => {
+const MemberModal = ({modelData, open, onClose }:{  modelData: Member, open: boolean, onClose: () => void } ) => {
 
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    setOpen(true)
-  }, [modelData])
+const avatarFallback = useMemo(() => 
+  modelData.name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase(),
+  [modelData.name]
+);
   return (
-   <Dialog open={open} onOpenChange={() => {}}>
+   <Dialog open={open} onOpenChange={onClose}>
   <DialogContent >
       <DialogClose asChild>
       <button
-        onClick={() => setOpen(false)}
+        onClick={onClose}
         className="absolute top-4 right-4 rounded-md p-1 text-muted-foreground font-bold hover:text-foreground transition"
         aria-label="Close"
       >
@@ -54,32 +54,31 @@ const MemberModal = ({modelData }:{  modelData: Member } ) => {
       <DialogTitle className="flex space-x-4">
            <Avatar className="w-20 h-20 ring-4 ring-gray-100 group-hover:ring-blue-100 transition-all duration-300">
               <AvatarImage 
-                src="https://github.com/shadcn.png" 
-                alt="Alice Johnson"
+                src={modelData.image}
+                alt={modelData.name}
+                 loading="lazy" 
                 className="group-hover:scale-105 transition-transform duration-300"
               />
-              <AvatarFallback className="text-lg">AJ</AvatarFallback>
+               <AvatarFallback className="text-lg font-bold uppercase"> {avatarFallback}</AvatarFallback>
+
             </Avatar>
 
-             <div className="space-y-1">
+             <div className="space-y-1 text-left">
             <CardTitle className="text-xl group-hover:text-blue-600 transition-colors duration-200">
              {modelData.name}
             </CardTitle>
             <CardDescription className="text-sm font-medium text-gray-500">
-       {modelData.role}
+            {modelData.role}
             </CardDescription>
              <Badge className="shadow-sm">
-       {modelData.status}
+            {modelData.status}
           </Badge>
           </div>
       </DialogTitle>
 
- 
-
       <DialogDescription>
-
         {/* Tabs Section  */}
-     <div className="flex w-full  flex-col gap-6">
+     <div className="flex w-full  flex-col gap-6 text-left">
       <Tabs defaultValue="profile">
         <TabsList>
           <TabsTrigger value="profile">
@@ -96,9 +95,8 @@ const MemberModal = ({modelData }:{  modelData: Member } ) => {
         <TabsContent value="profile" >
           <Card >
             <CardHeader>
-        
               <CardDescription>
-           <div className="space-y-2">
+           <div className="space-y-2 text-le">
                 <label className="text-sm font-semibold text-gray-700">Bio</label>
                 <p className="text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-lg border">
                {modelData.bio}
@@ -128,26 +126,21 @@ const MemberModal = ({modelData }:{  modelData: Member } ) => {
              {modelData.mobile  }
                   </p>
                 </div>
-          
 
                <div className="">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200">
                   <div className="text-2xl font-bold text-blue-700">{modelData.projects.length}</div>
                   <div className="text-sm text-blue-600 font-medium">Total Projects</div>
                 </div>
-                
-            
               </div>
                   </div>
               </CardDescription>
             </CardHeader>
-        
           </Card>
         </TabsContent>
         <TabsContent value="projects">
           <Card>
             <CardHeader>
-           
               <CardDescription>
                 <label className="text-sm font-semibold text-gray-700">Projects</label>
               <ul className="list-disc pl-5 space-y-1 text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-lg border ">
@@ -155,10 +148,8 @@ const MemberModal = ({modelData }:{  modelData: Member } ) => {
     <li className="mx-3" key={i}>{project}</li>
   ))}
 </ul>
-
               </CardDescription>
             </CardHeader>
-            
           </Card>
         </TabsContent>
       </Tabs>

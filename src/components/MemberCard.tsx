@@ -14,7 +14,14 @@ import {
 } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import type { Member } from '@/data/members';
+import { useMemo } from "react";
 const MemberCard = ({member, onClick}:{  member: Member , onClick?: () => void}) => {
+
+
+  const avatarFallback = useMemo(() => 
+    member.name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase(),
+    [member.name]
+  );
   return (
 <>
     <div className="w-full " onClick={onClick}>
@@ -24,11 +31,12 @@ const MemberCard = ({member, onClick}:{  member: Member , onClick?: () => void})
           <div className="flex justify-center">
             <Avatar className="w-20 h-20 ring-4 ring-gray-100 group-hover:ring-blue-100 transition-all duration-300">
               <AvatarImage 
-                src="https://github.com/shadcn.png" 
-                alt="Alice Johnson"
+                src={member.image}
+                alt={member.name}
+                loading="lazy" 
                 className="group-hover:scale-105 transition-transform duration-300"
               />
-              <AvatarFallback className="text-lg font-bold uppercase"> {member.name.split(" ").map(n => n[0]).slice(0, 2).join("")}</AvatarFallback>
+              <AvatarFallback className="text-lg font-bold uppercase"> {avatarFallback}</AvatarFallback>
             </Avatar>
           </div>
           
@@ -68,10 +76,11 @@ const MemberCard = ({member, onClick}:{  member: Member , onClick?: () => void})
             {/* Avatar */}
             <Avatar className="w-14 h-14 ring-2 ring-gray-100 shrink-0">
               <AvatarImage 
-                src="https://github.com/shadcn.png" 
-                alt="Alice Johnson"
+              loading="lazy" 
+                src={member.image}
+                alt={member.name}
               />
- <AvatarFallback className="text-lg font-bold uppercase"> {member.name.split(" ").map(n => n[0]).slice(0, 2).join("")}</AvatarFallback>
+ <AvatarFallback className="text-lg font-bold uppercase"> {avatarFallback}</AvatarFallback>
  </Avatar>
             
             {/* Content */}
